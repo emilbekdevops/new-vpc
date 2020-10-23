@@ -62,7 +62,7 @@ def slavePodTemplate = """
         }
     }
 }    
-        container("buildtools") {
+        stage("buildtools") {
             dir('deployments/terraform') {
                 withCredentials([string(credentialsId: 'AWSAccessKeyID', variable: 'buildtools'), string(credentialsId: 'AWSSecretKey', variable: 'buildtools')]) {
     // some block
