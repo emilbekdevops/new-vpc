@@ -69,4 +69,4 @@ def slavePodTemplate = """
 }
             }
         }
-    }     
+}     
