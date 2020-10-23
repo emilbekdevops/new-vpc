@@ -61,4 +61,4 @@ def slavePodTemplate = """
           git 'https://github.com/emilbekdevops/new-vpc.git'
         }
     }
-        
+}    
