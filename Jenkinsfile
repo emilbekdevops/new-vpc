@@ -58,7 +58,7 @@ def slavePodTemplate = """
       node(k8slabel) {
           
         stage("Pull SCM") {
-          git https://github.com/emilbekdevops/new-vpc.git
+          git 'https://github.com/emilbekdevops/new-vpc.git'
         }
 
         
