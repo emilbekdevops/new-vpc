@@ -64,9 +64,29 @@ def slavePodTemplate = """
 }    
         stage("buildtools") {
             dir('deployments/terraform') {
-                withCredentials([string(credentialsId: 'AWSAccessKeyID', variable: 'buildtools'), string(credentialsId: 'AWSSecretKey', variable: 'buildtools')]) {
+                withCredentials([
+                    string(credentialsId: 'AWSAccessKeyID', variable: 'buildtools'), 
+                    string(credentialsId: 'AWSSecretKey', variable: 'buildtools')]) {
     // some block
 }
             }
         }
-     
+                stage("Apply/Plan")  {
+          container('fuchicorptools') {
+              withCredentials([
+                    string(credentialsId: 'AWSAccessKeyID', variable: 'buildtools'), 
+                    string(credentialsId: 'AWSSecretKey', variable: 'buildtools')]) 
+                
+                ]) {
+                dir("${WORKSPACE}") {
+                    sh '''#!/bin/bash -e
+                    cat \$common_json &> ${WORKSPACE}/common-service-account.json
+                    cat \$common_tools_conf &> ${WORKSPACE}/common.tfvars
+                    source set-env.sh common.tfvars 
+                    terraform apply --auto-approve -var-file=common.tfvars 
+                    '''
+                }
+              }
+            
+          }
+        }
