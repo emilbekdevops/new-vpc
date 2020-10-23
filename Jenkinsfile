@@ -77,7 +77,7 @@ def slavePodTemplate = """
                     string(credentialsId: 'AWSAccessKeyID', variable: 'buildtools'), 
                     string(credentialsId: 'AWSSecretKey', variable: 'buildtools')]) 
                 
-                ]) {
+                {
                 dir("${WORKSPACE}") {
                     sh '''#!/bin/bash -e
                     cat \$common_json &> ${WORKSPACE}/common-service-account.json
