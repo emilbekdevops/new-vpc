@@ -60,5 +60,5 @@ def slavePodTemplate = """
         stage("Pull SCM") {
           git 'https://github.com/emilbekdevops/new-vpc.git'
         }
-
+    }
         
