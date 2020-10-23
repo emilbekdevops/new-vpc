@@ -64,8 +64,9 @@ def slavePodTemplate = """
 }    
         container("buildtools") {
             dir('deployments/terraform') {
-                withCredentials([string(credentialsId: 'git-common-token', variable: 'aws-access-dev')]) {
+                withCredentials([string(credentialsId: 'AWSAccessKeyID', variable: 'buildtools'), string(credentialsId: 'AWSSecretKey', variable: 'buildtools')]) {
     // some block
+}
             }
         }
     }     
